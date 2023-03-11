@@ -46,6 +46,11 @@ from PIL import Image
 
 from sklearn.metrics import precision_recall_fscore_support
 
+
+import wandb
+wandb.init(project='Pretaining BART')
+config = wandb.config
+
 __author__ = "Jianfei"
 
 def image_process(image_path, transform):
@@ -845,6 +850,11 @@ def main():
                       'f_score': F_score,
                       'global_step': global_step,
                       'loss': loss}
+            wandb.log({"Dev_Evaluation_loss": eval_loss})
+            wandb.log({"Dev_Evaluation_accuracy": eval_accuracy})
+            wandb.log({"Dev_F1_score": F_score})
+            wandb.log({"Dev_Global_step": global_step})
+            wandb.log({"Dev_Loss": loss})
 
             logger.info("***** Dev Eval results *****")
             for key in sorted(result.keys()):
@@ -965,6 +975,13 @@ def main():
                   'f_score': F_score,
                   'global_step': global_step,
                   'loss': loss}
+        wandb.log({"Test_Evaluation_loss": eval_loss})
+        wandb.log({"Test_Evaluation_accuracy": eval_accuracy})
+        wandb.log({"Test_Precision": precision})
+        wandb.log({"Test_Recall": recall})
+        wandb.log({"Test_F1_score": F_score})
+        wandb.log({"Test_Global_step": global_step})
+        wandb.log({"Test_Loss": loss})
 
         pred_label = np.argmax(pred_outputs, axis=-1)
         fout_p = open(os.path.join(args.output_dir, "pred.txt"), 'w')

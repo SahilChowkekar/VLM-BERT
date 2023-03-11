@@ -975,13 +975,7 @@ def main():
                   'f_score': F_score,
                   'global_step': global_step,
                   'loss': loss}
-        wandb.log({"Test_Evaluation_loss": eval_loss})
-        wandb.log({"Test_Evaluation_accuracy": eval_accuracy})
-        wandb.log({"Test_Precision": precision})
-        wandb.log({"Test_Recall": recall})
-        wandb.log({"Test_F1_score": F_score})
-        wandb.log({"Test_Global_step": global_step})
-        wandb.log({"Test_Loss": loss})
+        print("\nResult = {}\n".format(result))
 
         pred_label = np.argmax(pred_outputs, axis=-1)
         fout_p = open(os.path.join(args.output_dir, "pred.txt"), 'w')

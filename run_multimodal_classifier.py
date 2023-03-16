@@ -48,7 +48,7 @@ from sklearn.metrics import precision_recall_fscore_support
 
 
 import wandb
-wandb.init(project='Pretaining BART')
+wandb.init(project='Pretraining-BART')
 config = wandb.config
 
 __author__ = "Jianfei"
@@ -503,7 +503,7 @@ def main():
                         type=float,
                         help="The initial learning rate for Adam.")
     parser.add_argument("--num_train_epochs",
-                        default=8.0,
+                        default=35.0,
                         type=float,
                         help="Total number of training epochs to perform.")
     parser.add_argument("--warmup_proportion",
@@ -555,9 +555,9 @@ def main():
     print("*"*50)
 
     if args.task_name == "twitter":        # this refers to twitter-2017 dataset
-        args.path_image = "../pytorch-pretrained-BERT/twitter_subimages/"
+        args.path_image = "../IJCAI2019_data/twitter2017_images/"
     elif args.task_name == "twitter2015":  # this refers to twitter-2015 dataset
-        args.path_image = "../pytorch-pretrained-BERT/twitter15_images/"
+        args.path_image = "../IJCAI2019_data/twitter2015_images/"
     else:
         print("The task name is not right!")
 
@@ -975,13 +975,7 @@ def main():
                   'f_score': F_score,
                   'global_step': global_step,
                   'loss': loss}
-        wandb.log({"Test_Evaluation_loss": eval_loss})
-        wandb.log({"Test_Evaluation_accuracy": eval_accuracy})
-        wandb.log({"Test_Precision": precision})
-        wandb.log({"Test_Recall": recall})
-        wandb.log({"Test_F1_score": F_score})
-        wandb.log({"Test_Global_step": global_step})
-        wandb.log({"Test_Loss": loss})
+        print("\nResult = {}\n".format(result))
 
         pred_label = np.argmax(pred_outputs, axis=-1)
         fout_p = open(os.path.join(args.output_dir, "pred.txt"), 'w')

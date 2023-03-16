@@ -48,7 +48,7 @@ from sklearn.metrics import precision_recall_fscore_support
 
 
 import wandb
-wandb.init(project='Pretraining-BART')
+wandb.init(project='Bert-Configuration')
 config = wandb.config
 
 __author__ = "Jianfei"

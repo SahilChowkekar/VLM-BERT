@@ -4,13 +4,26 @@
 - Dataset and codes for our IJCAI 2019 paper "Adapting BERT for Target-Oriented Multimodal Sentiment Classification"
 https://www.ijcai.org/proceedings/2019/0751.pdf
 
-Author
+Original Author - Jianfei YU (jfyu@njust.edu.cn)
 
-Jianfei YU
+Made changes by Priyanshu Sharma (pshar053@ucr.edu) and Sahil Chowkekar (schow064@ucr.edu)
 
-jfyu@njust.edu.cn
+## Change Logs
 
-Mar 02, 2020
+Mar 24, 2023
+
+> Added comparision of different BERT-based model with BART-based approaches for Multimodal Sentiment Analysis.
+
+## Details
+- We are inspired by the pooling techniques used in TomBERT in order to concatenate the visual and textual features and used the same in BART-based method.
+- We also found out that our result with pooling technique are better with BART-based approaches
+as compared to BERT-based one.
+- For more details you guys can view the results of all the experiments in the results folder.
+- BERT - Base Model - https://wandb.ai/pshar053/Bert-Configuration?workspace=user-pshar053
+- BERT - Large Model - https://wandb.ai/pshar053/Bert-Large-Configuration?workspace=user-pshar053
+- We have already merged our all the code changes related our all the experiments in the master branch.
+You guys can track that using the recently merged Pull Requests.
+- We have also added the further detail of basic code setup. Follow the following documentation precisely in order to replicate the exact results.
 
 > Target-oriented Multimodal Sentiment Classification (TMSC), PyTorch Implementations.
 
@@ -68,6 +81,3 @@ sh run_classifier.sh
 - You can download the BERT and TomBERT models trained by me. You can find the results we report in our paper from the "eval_result" files.
 https://drive.google.com/open?id=1e3rL3G1ojaDWZnrkmZX-uLudPbQo7tVe
 
-## Acknowledgements
-
-- Most of the codes are based on the codes provided by huggingface: https://github.com/huggingface/transformers.
